@@ -80,7 +80,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  *    if (foo) {
  *      bar();
- *    }           // violation, right curly must be in the same line as the else statement
+ *    }           // violation, right curly must be in the same line as the 'else' keyword
  *    else {
  *      bar();
  *    }
@@ -91,19 +91,15 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *      bar();
  *    }
  *
-<<<<<<< Updated upstream
- *    if (foo) { bar(); } int i = 0; // violation, statement not allow after a singleline statement
-=======
  *    if (foo) { bar(); } int i = 0; // violation
  *                  // ^^^ statement is not allowed on same line after curly right brace
->>>>>>> Stashed changes
  *
  *    if (foo) { bar(); }            // OK
  *    int i = 0;
  *
  *    try {
  *      bar();
- *    }                       // violation, rightCurly must be in the smae line as the catch statment
+ *    }           // violation, rightCurly must be in the same line as 'catch' keyword
  *    catch (Exception e) {
  *      bar();
  *    }
@@ -116,7 +112,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  *  }                         // OK
  *
- *  public void testSingleLine() { bar(); } // OK
+ *  public void testSingleLine() { bar(); } // OK, because singleline is allowed
  *}
  * </pre>
  * <p>
@@ -140,11 +136,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  *    if (foo) {
  *      bar();
-<<<<<<< Updated upstream
- *    } else { bar(); }   //violation, right curly must be alone
-=======
  *    } else { bar(); }   // violation, right curly must be alone on line
->>>>>>> Stashed changes
  *
  *    if (foo) {
  *      bar();
@@ -154,13 +146,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  *    try {
  *      bar();
- *    } catch (Exception e) { // OK because config is set to token method and else
+ *    } catch (Exception e) { // OK because config is set to token METHOD_DEF and LITERAL_ELSE
  *      bar();
  *    }
  *
  *  }                         // OK
  *
- *  public void violate() { bar; } //violation, singleline is not allowed here
+ *  public void violate() { bar; } // violation, singleline is not allowed here
  *
  *  public void ok() {
  *    bar();
@@ -189,7 +181,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  *    if (foo) {
  *      bar();
- *    } else {        //violation, right curly must be alone
+ *    } else {        // violation, right curly must be alone
  *      bar();
  *    }
  *
@@ -202,7 +194,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  *    try {
  *      bar();
- *    } catch (Exception e) {        // OK because config did not set token try-catch
+ *    } catch (Exception e) {        // OK because config did not set token LITERAL_TRY
  *      bar();
  *    }
  *
